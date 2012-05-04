@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:orientation="vertical">	<TableLayout android:layout_width="fill_parent"		android:layout_height="wrap_content" android:stretchColumns="1">
+
+		<TableRow android:id="@+id/tableRow01" android:layout_width="fill_parent"
+			android:layout_height="wrap_content">
+			<TextView android:id="@+id/label1" android:text="@string/labelmotor1" />
+			<SeekBar android:id="@+id/seekBar1" />
+			<TextView android:id="@+id/textView1" android:text="000" />
+		</TableRow>
+
+
+		<TableRow android:id="@+id/tableRow02" android:layout_width="fill_parent"
+			android:layout_height="wrap_content">
+			<TextView android:id="@+id/label2" android:text="@string/labelmotor2" />
+			<SeekBar android:id="@+id/seekBar2" />
+			<TextView android:id="@+id/textView2" android:text="000" />
+		</TableRow>
+
+
+		<TableRow android:id="@+id/tableRow03" android:layout_width="fill_parent"
+			android:layout_height="wrap_content">
+			<TextView android:id="@+id/label3" android:text="@string/labelservo1" />
+			<SeekBar android:id="@+id/seekBar3" />
+			<TextView android:id="@+id/textView3" android:text="090" />
+		</TableRow>
+
+
+	</TableLayout>
+
+	<LinearLayout android:layout_width="wrap_content"
+		android:layout_height="wrap_content">
+		<TextView android:id="@+id/label4" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:text="@string/labelrelay1" />
+		<ToggleButton android:id="@+id/toggleButton1"
+			android:layout_width="wrap_content" android:layout_height="wrap_content" />
+	</LinearLayout>
+	<LinearLayout android:layout_width="wrap_content"
+		android:layout_height="wrap_content">
+		<TextView android:id="@+id/label5" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:text="@string/labelrelay2" />
+		<ToggleButton android:id="@+id/toggleButton2"
+			android:layout_width="wrap_content" android:layout_height="wrap_content" />
+	</LinearLayout>
+	<LinearLayout android:layout_width="wrap_content"
+		android:layout_height="20dp" />
+
+	<LinearLayout android:layout_width="wrap_content"
+		android:layout_height="wrap_content">
+
+		<TextView android:id="@+id/label9" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:text="Primitive Operation" />
+	</LinearLayout>
+	<TableLayout android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:stretchColumns="*">
+
+		<TableRow android:id="@+id/tableRow11" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:gravity="center_vertical">
+			<TextView android:id="@+id/label6" android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:text="Config" />
+			<Spinner android:id="@+id/spinner1" android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:entries="@array/portlist" />
+			<Spinner android:id="@+id/spinner2" android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:entries="@array/command1" />
+			<Button android:id="@+id/buttonconfig" android:layout_width="wrap_content"
+				android:layout_height="wrap_content" style="?android:attr/buttonStyleSmall"
+				android:text="Set" />
+		</TableRow>
+
+		<TableRow android:id="@+id/tableRow12" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:gravity="center_vertical">
+
+			<TextView android:id="@+id/label7" android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:text="Input" />
+			<Spinner android:id="@+id/spinner3" android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:entries="@array/portlist" />
+			<TextView android:id="@+id/labelinvalue"
+				android:layout_width="wrap_content" android:layout_height="wrap_content" 
+				android:text="   "/>
+			<Button android:id="@+id/buttondin" android:layout_width="wrap_content"
+				android:layout_height="wrap_content" style="?android:attr/buttonStyleSmall"
+				android:text="D In" />
+			<Button android:id="@+id/buttonain" android:layout_width="wrap_content"
+				android:layout_height="wrap_content" style="?android:attr/buttonStyleSmall"
+				android:text="A In" />
+		</TableRow>
+
+		<TableRow android:id="@+id/tableRow13" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:gravity="center_vertical">
+
+			<TextView android:id="@+id/label8" android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:text="Output" />
+			<Spinner android:id="@+id/spinner4" android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:entries="@array/portlist" />
+			<EditText android:id="@+id/editOutput" android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:inputType="number"
+				android:singleLine="true" />
+
+			<Button android:id="@+id/buttondout" android:layout_width="wrap_content"
+				android:layout_height="wrap_content" style="?android:attr/buttonStyleSmall"
+				android:text="D Out" />
+			<Button android:id="@+id/buttonaout" android:layout_width="wrap_content"
+				android:layout_height="wrap_content" style="?android:attr/buttonStyleSmall"
+				android:text="A Out" />
+		</TableRow>
+	</TableLayout>
+</LinearLayout>

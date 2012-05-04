@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:orientation="vertical">
+	<LinearLayout android:layout_width="wrap_content"
+		android:layout_height="wrap_content">
+		<TextView android:id="@+id/label1" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:text="@string/labelmotor1" />
+		<SeekBar android:id="@+id/seekBar1" android:layout_width="500dp"
+			android:layout_height="wrap_content" />
+		<TextView android:id="@+id/textView1" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" />
+	</LinearLayout>
+	<LinearLayout android:layout_width="wrap_content"	android:layout_height="20dp" />
+	<LinearLayout android:layout_width="wrap_content"
+		android:layout_height="wrap_content">
+		<TextView android:id="@+id/label2" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:text="@string/labelmotor2" />
+		<SeekBar android:id="@+id/seekBar2" android:layout_width="500dp"
+			android:layout_height="wrap_content" />
+		<TextView android:id="@+id/textView2" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" />
+	</LinearLayout>
+	<LinearLayout android:layout_width="wrap_content"	android:layout_height="20dp" />
+	<LinearLayout android:layout_width="wrap_content"
+		android:layout_height="wrap_content">
+		<TextView android:id="@+id/label3" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:text="@string/labelservo1" />
+		<SeekBar android:id="@+id/seekBar3" android:layout_width="500dp"
+			android:layout_height="wrap_content" />
+		<TextView android:id="@+id/textView3" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" />
+	</LinearLayout>
+	<LinearLayout android:layout_width="wrap_content"	android:layout_height="20dp" />
+	<LinearLayout android:layout_width="wrap_content"
+		android:layout_height="wrap_content">
+		<TextView android:id="@+id/label4" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:text="@string/labelrelay1" />
+		<ToggleButton android:id="@+id/toggleButton1"
+			android:layout_width="wrap_content" android:layout_height="wrap_content" />
+	</LinearLayout>
+	<LinearLayout android:layout_width="wrap_content"
+		android:layout_height="wrap_content">
+		<TextView android:id="@+id/label5" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:text="@string/labelrelay2" />
+		<ToggleButton android:id="@+id/toggleButton2"
+			android:layout_width="wrap_content" android:layout_height="wrap_content" />
+	</LinearLayout>
+	<LinearLayout android:layout_width="wrap_content"	android:layout_height="50dp" />
+	<LinearLayout android:layout_width="wrap_content"
+		android:layout_height="wrap_content">
+		<TextView
+		    android:id="@+id/label6"
+	    	android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+	    	android:text="Primitive Configuration" />
+		<Spinner
+		    android:id="@+id/spinner1"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_weight="1"
+		    android:entries="@array/portlist" />
+		<Spinner
+		    android:id="@+id/spinner2"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_weight="1"
+		    android:entries="@array/command1" />
+		<Button
+		    android:id="@+id/buttonconfig"
+		    style="?android:attr/buttonStyleSmall"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:text="Set" />
+	</LinearLayout>
+	<LinearLayout android:layout_width="wrap_content"
+		android:layout_height="wrap_content">
+		<TextView
+		    android:id="@+id/label7"
+	    	android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+	    	android:text="Primitive In" />
+		<Spinner
+		    android:id="@+id/spinner3"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_weight="1"
+		    android:entries="@array/portlist" />
+		<TextView
+		    android:id="@+id/labelinvalue"
+	    	android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"/>
+		<Button
+		    android:id="@+id/buttondin"
+		    style="?android:attr/buttonStyleSmall"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:text="DigitalIn" />
+		<Button
+		    android:id="@+id/buttonain"
+		    style="?android:attr/buttonStyleSmall"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:text="AnalogIn" />
+	</LinearLayout>
+	<LinearLayout android:layout_width="wrap_content"
+		android:layout_height="wrap_content">
+		<TextView
+		    android:id="@+id/label8"
+	    	android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+	    	android:text="Primitive Out" />
+		<Spinner
+		    android:id="@+id/spinner4"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_weight="1"
+		    android:entries="@array/portlist" />
+		<EditText
+		    android:id="@+id/editOutput"
+		    android:layout_width="79dp"
+		    android:layout_height="wrap_content"
+		    android:ems="10"
+		    android:inputType="number"
+		    android:singleLine="true" >
+		</EditText>
+		<Button
+		    android:id="@+id/buttondout"
+		    style="?android:attr/buttonStyleSmall"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:text="DigitalOut" />
+		<Button
+		    android:id="@+id/buttonaout"
+		    style="?android:attr/buttonStyleSmall"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:text="AnalogOut" />
+	</LinearLayout>
+</LinearLayout>

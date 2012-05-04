@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AKBrobotUART</string>
+    <string name="labelrelay1">Relay1</string>
+    <string name="labelrelay2">Relay2</string>
+    <string name="labelmotor1">Motor1</string>
+    <string name="labelmotor2">Motor2</string>
+    <string name="labelservo1">Servo1</string>
+    <string-array name="command1">
+        <item>Digital Out</item>
+        <item>Analog Out</item>
+        <item>Digital In</item>
+        <item>Analog In</item>
+        </string-array>
+    <string-array name="portlist">
+        <item>D0</item>
+        <item>D1</item>
+        <item>D2</item>
+        <item>D3</item>
+        <item>D4</item>
+        <item>D5</item>
+        <item>D6</item>
+        <item>A0</item>
+        <item>A1</item>
+        <item>A2</item>
+        <item>A3</item>
+        <item>A4</item>
+        <item>A5</item>
+	</string-array>
+</resources>
