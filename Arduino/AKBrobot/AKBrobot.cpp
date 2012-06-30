@@ -117,7 +117,7 @@ int AKBrobot::inPort(uint8_t *data)
   outdata[1] = data[1];  
   outdata[2] = (uint8_t)((pindata >> 8) & 0xff);
   outdata[3] = (uint8_t)(pindata & 0xff);
-  Serial.write(outdata, 4);
+//  Serial.write(outdata, 4);
   return(pindata);
 }
 

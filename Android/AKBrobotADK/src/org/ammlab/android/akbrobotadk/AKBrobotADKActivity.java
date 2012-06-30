@@ -21,6 +21,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.Resources;
+
 import java.io.FileDescriptor;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -53,10 +55,10 @@ public class AKBrobotADKActivity extends Activity  implements OnClickListener, R
     private UsbManager mUsbManager;
     private UsbAccessory mAccessory;
 
-    ParcelFileDescriptor mFileDescriptor;
+    ParcelFileDescriptor mFileDescriptor = null;
 
-    FileInputStream mInputStream;
-    FileOutputStream mOutputStream;
+    FileInputStream mInputStream = null;
+    FileOutputStream mOutputStream = null;
     private ToggleButton mToggleButton1;
     private ToggleButton mToggleButton2;
     private SeekBar mSeekBar1;
@@ -95,6 +97,12 @@ public class AKBrobotADKActivity extends Activity  implements OnClickListener, R
         filter.addAction(UsbManager.ACTION_USB_ACCESSORY_DETACHED);
         registerReceiver(mUsbReceiver, filter);
 
+        //re-creation?
+        if (getLastNonConfigurationInstance() != null) {
+        	mAccessory = (UsbAccessory) getLastNonConfigurationInstance();
+        	openAccessory(mAccessory);
+        }
+        
         setContentView(R.layout.main);
 
         mToggleButton1 = (ToggleButton) findViewById(R.id.toggleButton1);
@@ -236,6 +244,7 @@ public class AKBrobotADKActivity extends Activity  implements OnClickListener, R
             }
         });
 
+        enableControls(false);
     }
     
     @Override
@@ -325,6 +334,7 @@ public class AKBrobotADKActivity extends Activity  implements OnClickListener, R
             // この中でアクセサリとやりとりする
             Thread thread = new Thread(null, this, "DemoKit");
             thread.start();
+            enableControls(true);
             Log.d(TAG, "accessory opened");
         } else {
             Log.d(TAG, "accessory open fail");
@@ -332,14 +342,20 @@ public class AKBrobotADKActivity extends Activity  implements OnClickListener, R
     }
 
     private void closeAccessory() {
+        enableControls(false);
         try {
             if (mFileDescriptor != null) {
+                mInputStream.close();
+                mOutputStream.close();
                 mFileDescriptor.close();
             }
         } catch (IOException e) {
         } finally {
             mFileDescriptor = null;
             mAccessory = null;
+            mInputStream = null;
+            mOutputStream = null;
+            Log.d(TAG, "accessory closed");
         }
     }
 
@@ -409,8 +425,10 @@ public class AKBrobotADKActivity extends Activity  implements OnClickListener, R
         byte[] buffer = new byte[16384];
         int i;
 
+        Log.d(TAG, "Thread started.");
         // アクセサリ -> アプリ
-        while (ret >= 0) {
+        while (mInputStream != null) {
+//        while (ret >= 0) {
             try {
                 ret = mInputStream.read(buffer);
             } catch (IOException e) {
@@ -448,6 +466,7 @@ public class AKBrobotADKActivity extends Activity  implements OnClickListener, R
             }
 
         }
+        Log.d(TAG, "Thread end.");
     }
     // アプリ -> アクセサリ
     public void sendCommand(byte command1, byte command2, byte value1, byte value2) {
@@ -481,4 +500,16 @@ public class AKBrobotADKActivity extends Activity  implements OnClickListener, R
             }
         }
     };
+    
+    // 接続状態表示(タイトルバー)
+    private void enableControls(boolean enable) {
+    	Resources res = getResources();
+    	String titleString = res.getString(R.string.app_name);
+ 
+        if (enable) {
+            setTitle(titleString + " - connected");
+        } else {
+            setTitle(titleString + " - not connected");
+        }
+    }
 }

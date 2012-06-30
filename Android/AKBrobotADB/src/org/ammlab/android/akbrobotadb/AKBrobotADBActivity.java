@@ -18,6 +18,7 @@ package org.ammlab.android.akbrobotadb;
 import java.io.IOException;
 
 import android.app.Activity;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -33,7 +34,9 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.SeekBar.OnSeekBarChangeListener;
+
 import org.microbridge.server.AbstractServerListener;
+import org.microbridge.server.Client;
 import org.microbridge.server.Server;
 
 
@@ -64,7 +67,9 @@ public class AKBrobotADBActivity extends Activity  implements OnClickListener {
     private byte[] mRecvBuff = new byte[4];
     
     private static final int MESSAGE_INPUTVAL = 1;
-    
+	private static final int MESSAGE_CONNECT = 2;
+	private static final int MESSAGE_DISCONNECT = 3;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -235,8 +240,46 @@ public class AKBrobotADBActivity extends Activity  implements OnClickListener {
                 Log.d(TAG, "data received:"+data[0]+","+data[1]+","+data[2]+","+data[3]);
                 mHandler.sendMessage(m);
              };
+             @Override
+             public void onClientConnect(Server server, Client client)
+             {
+            	 Message m = Message.obtain(mHandler, MESSAGE_CONNECT);
+            	 mHandler.sendMessage(m);
+             }
+             @Override
+             public void onClientDisconnect(Server server, Client client)
+             {
+            	 Message m = Message.obtain(mHandler, MESSAGE_DISCONNECT);
+            	 mHandler.sendMessage(m);
+             }
 		});
+		
+		enableControls(false);
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(! server.isRunning()){
+    		try
+    		{
+    			server.start();
+    		} catch (IOException e)
+    		{
+    			Log.e(TAG, "Unable to start TCP server", e);
+    		}
+        }
+    }
+
+	@Override
+	protected void onPause()
+	{
+		super.onPause();
+		if(server.isRunning())
+		{
+			server.stop();
+		}
+	}
     
     public void sendCommand(byte command1, byte command2, byte value1, byte value2) {
 		byte[] buffer = new byte[4];
@@ -325,7 +368,25 @@ public class AKBrobotADBActivity extends Activity  implements OnClickListener {
                 	}
                		mInValue.setText(String.valueOf(val));
                    break;
+                case MESSAGE_CONNECT:
+                    enableControls(true);
+                    break;
+                case MESSAGE_DISCONNECT:
+                    enableControls(false);
+                    break;
             }
         }
     };
+
+    // 接続状態表示(タイトルバー)
+    private void enableControls(boolean enable) {
+    	Resources res = getResources();
+    	String titleString = res.getString(R.string.app_name);
+ 
+        if (enable) {
+            setTitle(titleString + " - connected");
+        } else {
+            setTitle(titleString + " - not connected");
+        }
+    }
 }
